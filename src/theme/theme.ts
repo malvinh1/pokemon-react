@@ -1,6 +1,10 @@
 export const lightTheme = {
   colors: {
     background: "#fff",
+    buttonBg: "#ffcb05",
+    buttonText: "#806600",
+    cardShadow: "rgb(49 53 59 / 12%)",
+    primary: "#000",
   },
   spacing: {
     s: 8,
@@ -15,5 +19,9 @@ export const darkTheme = {
   ...lightTheme,
   colors: {
     background: "#000",
+    buttonBg: "#ffcb05",
+    buttonText: "#FFFAF0",
+    cardShadow: "rgb(230 230 230 / 60%)",
+    primary: "#fff",
   },
 };

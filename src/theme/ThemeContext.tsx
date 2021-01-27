@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
 import { ThemeProvider as ThemeProviderEmotion } from "@emotion/react";
-import { lightTheme, darkTheme } from "./theme";
+import React, { useContext, useState } from "react";
+
+import { darkTheme, lightTheme } from "./theme";
 
 const ThemeUpdateContext = React.createContext(() => {});
 
