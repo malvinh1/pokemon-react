@@ -1,10 +1,13 @@
 import React from "react";
 
+import Home from "./pages/Home";
+import { ThemeProvider } from "./theme/ThemeContext";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
-    </div>
+    <ThemeProvider>
+      <Home />
+    </ThemeProvider>
   );
 }
 
