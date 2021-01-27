@@ -1,46 +1,65 @@
 /** @jsxImportSource @emotion/react */
 
 import { useQuery } from "@apollo/client";
-import { css, useTheme } from "@emotion/react";
-import React from "react";
+import { css, Theme, useTheme } from "@emotion/react";
+import React, { useState } from "react";
 
+import Button from "../components/Button";
 import Card from "../components/Card";
+import Error from "../components/Error";
 import Header from "../components/Header";
 import LoadingIndicator from "../components/LoadingIndicator";
-import { Pokemons, PokemonsVariables } from "../generated/server/Pokemons";
+import {
+  Pokemons,
+  Pokemons_pokemons_results,
+  PokemonsVariables,
+} from "../generated/server/Pokemons";
 import { POKEMONS } from "../graphql/server/pokemon";
 
 export default function Home() {
-  const theme = useTheme();
-  const styles = useStyles();
+  const styles = useStyles(useTheme());
 
-  const { loading, data } = useQuery<Pokemons, PokemonsVariables>(POKEMONS, {
+  const [pokemonData, setPokemonData] = useState<
+    Array<Pokemons_pokemons_results | null>
+  >([]);
+  const [offset, setOffset] = useState(0);
+
+  const { loading, error, data, fetchMore } = useQuery<
+    Pokemons,
+    PokemonsVariables
+  >(POKEMONS, {
     variables: {
       limit: 20,
-      offset: 0,
+      offset: offset,
+    },
+    onCompleted: ({ pokemons }) => {
+      setPokemonData((oldData) => [...oldData].concat(pokemons?.results || []));
     },
   });
 
-  if (loading) {
-    return <LoadingIndicator />;
+  const onClickLoadMore = () => {
+    fetchMore({
+      variables: {
+        limit: 20,
+        offset: offset + 20,
+      },
+    });
+    setOffset(offset + 20);
+  };
+
+  if (loading && pokemonData.length === 0) {
+    return <LoadingIndicator containerStyle={{ marginTop: 100 }} />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (
-    <div
-      css={{
-        height: "100%",
-        backgroundColor: theme.colors.background,
-      }}
-    >
+    <div css={styles.container}>
       <Header />
-      <div
-        css={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {data?.pokemons?.results?.map((item) => (
+      <div css={styles.contentContainer}>
+        {pokemonData.map((item) => (
           <div css={styles.cardContainer} key={item?.id}>
             <Card
               name={item?.name || ""}
@@ -50,16 +69,30 @@ export default function Home() {
           </div>
         ))}
       </div>
+      {loading && pokemonData.length >= 0 ? (
+        <LoadingIndicator containerStyle={{ marginTop: 20 }} />
+      ) : pokemonData.length !== data?.pokemons?.count ? (
+        <Button label="Load more" onClick={onClickLoadMore} />
+      ) : null}
     </div>
   );
 }
 
-const useStyles = () => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
+    container: css({
+      height: "100%",
+      backgroundColor: colors.background,
+    }),
+    contentContainer: css({
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+    }),
     cardContainer: css({
-      margin: 16,
+      margin: spacing.l,
       "@media screen and (max-width: 960px)": {
-        margin: 4,
+        margin: spacing.xs,
       },
     }),
   };

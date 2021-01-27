@@ -5,12 +5,16 @@ import React from "react";
 
 import LoadingImage from "../assets/pokeball.png";
 
-export default function LoadingIndicator() {
+type Props = {
+  containerStyle?: React.CSSProperties;
+};
+
+export default function LoadingIndicator({ containerStyle }: Props) {
   const styles = useStyles();
 
   return (
-    <div css={styles.container}>
-      <img css={styles.loading} src={LoadingImage} />
+    <div css={styles.container} style={containerStyle}>
+      <img css={styles.image} src={LoadingImage} />
     </div>
   );
 }
@@ -37,10 +41,10 @@ const useStyles = () => {
     container: css({
       display: "flex",
       justifyContent: "center",
-      marginTop: 100,
     }),
-    loading: css({
+    image: css({
       animation: `${bounce} 1s ease infinite`,
+      height: "20vmin",
       "@media (max-width: 960px)": {
         height: "10vmin",
       },

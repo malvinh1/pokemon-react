@@ -34,6 +34,6 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     display: "flex",
-    padding: "0 10px",
+    padding: "0 20px",
   }),
 };
