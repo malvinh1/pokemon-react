@@ -21,7 +21,7 @@ export const darkTheme = {
     background: "#000",
     buttonBg: "#ffcb05",
     buttonText: "#FFFAF0",
-    cardShadow: "rgb(230 230 230 / 60%)",
+    cardShadow: "rgb(238 232 170 / 80%)",
     primary: "#fff",
   },
 };

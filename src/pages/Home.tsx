@@ -17,11 +17,26 @@ export default function Home() {
       }}
     >
       <Header />
-      <Card
-        name="bulbasaur"
-        imgUrl="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-        pokemonOwned={0}
-      />
+      <div
+        css={{
+          display: "flex",
+          flexWrap: "wrap",
+          padding: 20,
+          justifyContent: "space-evenly",
+        }}
+      >
+        <div
+          css={{
+            margin: 10,
+          }}
+        >
+          <Card
+            name="bulbasaur"
+            imgUrl="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+            pokemonOwned={0}
+          />
+        </div>
+      </div>
     </div>
   );
 }

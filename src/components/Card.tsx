@@ -21,7 +21,7 @@ export default function Card({ name, imgUrl, pokemonOwned }: Props) {
   );
 }
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     container: css({
       borderRadius: 12,
@@ -31,7 +31,7 @@ const useStyles = ({ colors }: Theme) => {
       overflow: "hidden",
       boxShadow: `0 1px 6px 0 ${colors.cardShadow}`,
       maxWidth: 192,
-      padding: 16,
+      padding: spacing.l,
       transform: "matrix(1,0,0,1,0,0)",
       "&:hover": {
         transform: "matrix(1,0,0,1,0,2)",
@@ -39,7 +39,7 @@ const useStyles = ({ colors }: Theme) => {
       },
       "@media (max-width: 960px)": {
         maxWidth: 96,
-        padding: 8,
+        padding: spacing.s,
       },
     }),
     cardTitle: css({
@@ -56,7 +56,7 @@ const useStyles = ({ colors }: Theme) => {
       fontWeight: 700,
       backgroundColor: colors.buttonBg,
       borderRadius: "1rem",
-      padding: 8,
+      padding: spacing.s,
       "@media (max-width: 960px)": {
         fontSize: ".5rem",
       },
