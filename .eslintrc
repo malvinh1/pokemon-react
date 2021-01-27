@@ -18,7 +18,8 @@
       "import/first": "off",
       "import/newline-after-import": "off",
       "import/no-duplicates": "off",
-      "import/order": "off"
+      "import/order": "off",
+      "no-unused-vars": "warn"
     },
     "overrides": [
       {
