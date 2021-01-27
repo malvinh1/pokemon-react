@@ -24,6 +24,7 @@
     "overrides": [
       {
         "files": "server/**/*.js",
+        "excludedFiles": "src/generated",
         "env": { "node": true },
         "rules": {
           "simple-import-sort/imports": "off",
