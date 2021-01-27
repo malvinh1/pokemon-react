@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, Interpolation } from "@emotion/react";
+import { css } from "@emotion/react";
 import React, { useState } from "react";
 import Switch from "react-switch";
 
