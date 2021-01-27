@@ -10,6 +10,7 @@ declare module "@emotion/react" {
       primary: string;
     };
     spacing: {
+      xs: number;
       s: number;
       m: number;
       l: number;
