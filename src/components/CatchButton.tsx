@@ -3,15 +3,20 @@
 import { css, Theme, useTheme } from "@emotion/react";
 import React from "react";
 
-import Pokeball from "../../../assets/pokeball.png";
+import Pokeball from "../assets/pokeball.png";
 
-export default function CatchButton() {
+type Props = {
+  label: string;
+  onClick?: () => void;
+};
+
+export default function CatchButton({ label, onClick }: Props) {
   const styles = useStyles(useTheme());
 
   return (
-    <div css={styles.detailsButton}>
+    <div css={styles.detailsButton} onClick={onClick}>
       <img css={styles.pokeballImage} src={Pokeball} alt="Catch em all!" />
-      <div css={styles.detailsButtonText}>CATCH</div>
+      <div css={styles.detailsButtonText}>{label}</div>
     </div>
   );
 }
@@ -33,6 +38,7 @@ const useStyles = ({ colors }: Theme) => {
       width: "15vmin",
       position: "sticky",
       bottom: 0,
+      textDecoration: "none",
       "&:hover": {
         filter: "none",
         backgroundColor: "grey",

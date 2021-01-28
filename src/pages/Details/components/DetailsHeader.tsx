@@ -9,9 +9,16 @@ type Props = {
   id: number;
   name: string;
   types?: Array<Pokemon_pokemon_types | null> | null;
+  // eslint-disable-next-line no-unused-vars
+  onChangeValue: (text: string) => void;
 };
 
-export default function DetailsHeader({ id, name, types }: Props) {
+export default function DetailsHeader({
+  id,
+  name,
+  types,
+  onChangeValue,
+}: Props) {
   const styles = useStyles(useTheme());
   return (
     <div css={styles.detailsHeader}>
@@ -20,7 +27,11 @@ export default function DetailsHeader({ id, name, types }: Props) {
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
       />
       <form css={styles.detailsNameContainer}>
-        <input css={styles.detailsName} value={name} onChange={() => {}} />
+        <input
+          css={styles.detailsName}
+          value={name}
+          onChange={(event) => onChangeValue(event.target.value)}
+        />
       </form>
       <div css={styles.detailsTypeContainer}>
         {types?.map((item) => (

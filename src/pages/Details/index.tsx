@@ -3,7 +3,10 @@
 import { useQuery } from "@apollo/client";
 import { css, Theme, useTheme } from "@emotion/react";
 import React, { useState } from "react";
+import { useIndexedDB } from "react-indexed-db";
+import { useHistory } from "react-router-dom";
 
+import CatchButton from "../../components/CatchButton";
 import Error from "../../components/Error";
 import LoadingIndicator from "../../components/LoadingIndicator";
 import {
@@ -12,7 +15,6 @@ import {
   PokemonVariables,
 } from "../../generated/server/Pokemon";
 import { POKEMON } from "../../graphql/server/pokemon";
-import CatchButton from "./components/CatchButton";
 import DetailsContent from "./components/DetailsContent";
 import DetailsHeader from "./components/DetailsHeader";
 
@@ -27,19 +29,58 @@ type Props = {
 export default function Details(props: Props) {
   const styles = useStyles(useTheme());
   const { colors } = useTheme();
+  const { deleteRecord, getByIndex, getAll } = useIndexedDB("pokemons");
+  const history = useHistory();
 
   const [pokemonData, setPokemonData] = useState<Pokemon_pokemon>();
+  const [nickname, setNickname] = useState("");
+  const [catched, setCatched] = useState<{
+    id: number;
+    name: string;
+    nickname: string;
+  } | null>(null);
 
   const { loading, error } = useQuery<Pokemon, PokemonVariables>(POKEMON, {
     variables: {
       name: props.location.state.name,
     },
-    onCompleted: ({ pokemon }) => {
+    onCompleted: async ({ pokemon }) => {
       if (pokemon) {
         setPokemonData(pokemon);
+        setNickname(pokemon.name || "");
+        const catchedPokemon = await getByIndex("nickname", pokemon.name);
+
+        if (catchedPokemon) {
+          setCatched(catchedPokemon);
+        }
       }
     },
   });
+
+  const onCatchClick = () => {
+    if (catched) {
+      deleteRecord(catched.id).then(
+        () => {
+          console.log("deleted successfully");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      getAll().then((e) => {
+        console.log(e);
+      });
+      history.goBack();
+    } else {
+      history.push({
+        pathname: "/catching-pokemon",
+        state: {
+          name: pokemonData?.name,
+          nickname: nickname,
+        },
+      });
+    }
+  };
 
   if (loading) {
     return (
@@ -62,12 +103,16 @@ export default function Details(props: Props) {
       <div css={styles.detailsContainer}>
         <DetailsHeader
           id={pokemonData?.id || 0}
-          name={pokemonData?.name || ""}
+          name={nickname}
           types={pokemonData?.types}
+          onChangeValue={setNickname}
         />
         <DetailsContent pokemonData={pokemonData} />
       </div>
-      <CatchButton />
+      <CatchButton
+        label={catched ? "RELEASE" : "CATCH"}
+        onClick={onCatchClick}
+      />
     </div>
   );
 }
