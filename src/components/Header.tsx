@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import Switch from "react-switch";
 
 import Logo from "../assets/logo.svg";
-import { useThemeUpdate } from "../theme/ThemeContext";
+import { useThemeContext, useThemeUpdate } from "../theme/ThemeContext";
 
 export default function Header() {
-  const [switchState, setSwitchState] = useState(false);
+  const [switchState, setSwitchState] = useState(useThemeContext());
 
   const toggleTheme = useThemeUpdate();
 
