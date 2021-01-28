@@ -2,6 +2,7 @@
 
 import { css, Theme, useTheme } from "@emotion/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   name: string;
@@ -13,11 +14,21 @@ export default function Card({ name, imgUrl, pokemonOwned }: Props) {
   const styles = useStyles(useTheme());
 
   return (
-    <a css={styles.container} href="/pokemon-details">
-      <img css={styles.image} src={imgUrl} alt="pokemon-image" />
-      <p css={styles.cardTitle}>{name}</p>
-      <div css={styles.cardOwnedText}>{`Owned: ${pokemonOwned}`}</div>
-    </a>
+    <Link
+      style={{ textDecoration: "none" }}
+      to={{
+        pathname: "/pokemon-details",
+        state: {
+          name,
+        },
+      }}
+    >
+      <div css={styles.container}>
+        <img css={styles.image} src={imgUrl} alt="pokemon-image" />
+        <p css={styles.cardTitle}>{name}</p>
+        <div css={styles.cardOwnedText}>{`Owned: ${pokemonOwned}`}</div>
+      </div>
+    </Link>
   );
 }
 
@@ -34,7 +45,6 @@ const useStyles = ({ colors, spacing }: Theme) => {
       padding: spacing.l,
       transform: "matrix(1,0,0,1,0,0)",
       cursor: "pointer",
-      textDecoration: "none",
       "&:hover": {
         transform: "matrix(1,0,0,1,0,2)",
         transition: ".25s ease",

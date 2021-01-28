@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <div css={styles.container}>
-      <img src={Logo} alt="logo" width={120} height={60} />
+      <img css={styles.image} src={Logo} alt="logo" />
       <Switch
         onChange={onChangeSwitch}
         checked={switchState}
@@ -34,6 +34,14 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     display: "flex",
-    padding: "0 20px",
+    padding: "0 10vmin",
+  }),
+  image: css({
+    width: 180,
+    height: 90,
+    "@media screen and (max-width: 960px)": {
+      width: 120,
+      height: 60,
+    },
   }),
 };
