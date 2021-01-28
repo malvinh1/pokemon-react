@@ -44,6 +44,9 @@ const useStyles = ({ colors }: Theme) => {
       borderBottom: "1px solid #ccc ",
       boxShadow: `0 1px 6px 0 ${colors.cardShadow}`,
       backgroundColor: colors.background,
+      position: "sticky",
+      top: 0,
+      zIndex: 1,
     }),
     image: css({
       width: 180,
