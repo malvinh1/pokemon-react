@@ -5,10 +5,14 @@ import React from "react";
 
 import LoadingIndicator from "./LoadingIndicator";
 
-export default function Error() {
+type Props = {
+  containerStyle?: React.CSSProperties;
+};
+
+export default function Error({ containerStyle }: Props) {
   const styles = useStyles(useTheme());
   return (
-    <div>
+    <div style={containerStyle}>
       <LoadingIndicator />
       <p css={styles.text}>No Data Found</p>
     </div>

@@ -7,7 +7,6 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Error from "../components/Error";
-import Header from "../components/Header";
 import LoadingIndicator from "../components/LoadingIndicator";
 import {
   Pokemons,
@@ -18,6 +17,7 @@ import { POKEMONS } from "../graphql/server/pokemon";
 
 export default function Home() {
   const styles = useStyles(useTheme());
+  const { colors } = useTheme();
 
   const [pokemonData, setPokemonData] = useState<
     Array<Pokemons_pokemons_results | null>
@@ -48,16 +48,31 @@ export default function Home() {
   };
 
   if (loading && pokemonData.length === 0) {
-    return <LoadingIndicator containerStyle={{ marginTop: 100 }} />;
+    return (
+      <LoadingIndicator
+        containerStyle={{
+          paddingTop: 100,
+          height: "100vh",
+          backgroundColor: colors.background,
+        }}
+      />
+    );
   }
 
   if (error) {
-    return <Error />;
+    return (
+      <Error
+        containerStyle={{
+          paddingTop: 100,
+          height: "100vh",
+          backgroundColor: colors.background,
+        }}
+      />
+    );
   }
 
   return (
     <div css={styles.container}>
-      <Header />
       <div css={styles.contentContainer}>
         {pokemonData.map((item) => (
           <div css={styles.cardContainer} key={item?.id}>

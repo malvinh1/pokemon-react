@@ -2,6 +2,7 @@ import { ApolloProvider } from "@apollo/client";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import Header from "./components/Header";
 import { client } from "./graphql/client";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
@@ -12,6 +13,7 @@ function App() {
     <ThemeProvider>
       <ApolloProvider client={client}>
         <Router>
+          <Header />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/pokemon-details" exact component={Details} />
