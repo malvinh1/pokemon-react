@@ -13,11 +13,11 @@ export default function Card({ name, imgUrl, pokemonOwned }: Props) {
   const styles = useStyles(useTheme());
 
   return (
-    <div css={styles.container}>
+    <a css={styles.container} href="/pokemon-details">
       <img css={styles.image} src={imgUrl} />
       <p css={styles.cardTitle}>{name}</p>
       <div css={styles.cardOwnedText}>{`Owned: ${pokemonOwned}`}</div>
-    </div>
+    </a>
   );
 }
 
@@ -33,6 +33,7 @@ const useStyles = ({ colors, spacing }: Theme) => {
       maxWidth: 192,
       padding: spacing.l,
       transform: "matrix(1,0,0,1,0,0)",
+      cursor: "pointer",
       "&:hover": {
         transform: "matrix(1,0,0,1,0,2)",
         transition: ".25s ease",
