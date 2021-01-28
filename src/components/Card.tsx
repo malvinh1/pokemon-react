@@ -14,7 +14,7 @@ export default function Card({ name, imgUrl, pokemonOwned }: Props) {
 
   return (
     <a css={styles.container} href="/pokemon-details">
-      <img css={styles.image} src={imgUrl} />
+      <img css={styles.image} src={imgUrl} alt="pokemon-image" />
       <p css={styles.cardTitle}>{name}</p>
       <div css={styles.cardOwnedText}>{`Owned: ${pokemonOwned}`}</div>
     </a>
