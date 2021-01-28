@@ -29,7 +29,7 @@ type Props = {
 export default function Details(props: Props) {
   const styles = useStyles(useTheme());
   const { colors } = useTheme();
-  const { deleteRecord, getByIndex, getAll } = useIndexedDB("pokemons");
+  const { deleteRecord, getByIndex } = useIndexedDB("pokemons");
   const history = useHistory();
 
   const [pokemonData, setPokemonData] = useState<Pokemon_pokemon>();
@@ -61,15 +61,12 @@ export default function Details(props: Props) {
     if (catched) {
       deleteRecord(catched.id).then(
         () => {
-          console.log("deleted successfully");
+          console.log("successfully released the pokemon");
         },
         (error) => {
           console.log(error);
         }
       );
-      getAll().then((e) => {
-        console.log(e);
-      });
       history.goBack();
     } else {
       history.push({

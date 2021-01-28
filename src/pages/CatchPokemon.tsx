@@ -28,8 +28,8 @@ export default function CatchPokemon({ location }: Props) {
         name: location.state.name,
         nickname: location.state.nickname,
       }).then(
-        (event) => {
-          console.log("ID generated", event);
+        () => {
+          console.log("pokemon catched!");
         },
         (error) => {
           console.log(error);
@@ -41,7 +41,13 @@ export default function CatchPokemon({ location }: Props) {
   return (
     <div css={styles.container}>
       <img css={styles.image} src={result === 0 ? PokemonRun : Gotcha} />
-      <h1>Catching Pokemon</h1>
+      <div css={styles.title}>{result === 1 ? "SUCCESSFUL!" : "FAILED"}</div>
+      <div css={styles.subtitle}>
+        {result === 1 ? "Gotta catch em' all!" : "It ran away..."}
+      </div>
+      <a css={styles.button} href="/">
+        <div css={styles.buttonText}>{"<"}</div>
+      </a>
     </div>
   );
 }
@@ -72,6 +78,34 @@ const useStyles = ({ colors }: Theme) => {
       "@media screen and (max-width: 960px)": {
         height: "75vmin",
       },
+    }),
+    title: css({
+      fontWeight: 700,
+      textAlign: "center",
+      fontSize: "5vmin",
+      color: colors.primary,
+    }),
+    subtitle: css({
+      fontWeight: 700,
+      textAlign: "center",
+      fontSize: "3vmin",
+      color: colors.primary,
+    }),
+    button: css({
+      textDecoration: "none",
+      backgroundColor: "#ffcb05",
+      boxShadow: "0 1px 6px 0 rgb(49 53 59 / 12%)",
+      padding: 16,
+      marginTop: 16,
+      borderRadius: 10,
+      outline: "none",
+      transform: "matrix(1,0,0,1,0,0)",
+      transition: ".25s ease",
+    }),
+    buttonText: css({
+      fontWeight: 700,
+      fontSize: "3rem",
+      margin: "0 10px",
     }),
   };
 };
