@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
 import { css, keyframes, Theme, useTheme } from "@emotion/react";
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useIndexedDB } from "react-indexed-db";
+import { useHistory } from "react-router-dom";
 
 import Gotcha from "../assets/gotcha.png";
 import PokemonRun from "../assets/pokemon-run.png";
@@ -12,42 +13,75 @@ type Props = {
     state: {
       name: string;
       nickname: string;
+      image: string;
     };
   };
 };
 
 export default function CatchPokemon({ location }: Props) {
   const styles = useStyles(useTheme());
+  const history = useHistory();
   const { add } = useIndexedDB("pokemons");
 
-  const result = useMemo(() => Math.floor(Math.random() * 2) + 0, []);
+  const [nickname, setNickname] = useState(location.state.nickname);
+  const [showSetNickname, setShowSetNickname] = useState(false);
 
-  useEffect(() => {
-    if (result === 1) {
-      add({
-        name: location.state.name,
-        nickname: location.state.nickname,
-      }).then(
-        () => {
-          console.log("pokemon catched!");
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+  const success = useMemo(() => {
+    let result = Math.floor(Math.random() * 2) + 0;
+    return result === 1 ? true : false;
   }, []);
+
+  const onClickButton = () => {
+    if (success) {
+      setShowSetNickname(!showSetNickname);
+    } else {
+      history.push("/");
+    }
+  };
+
+  const onSubmit = () => {
+    add({
+      name: location.state.name,
+      nickname: nickname,
+      image: location.state.image,
+    }).then(
+      () => {
+        console.log("pokemon catched!");
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    history.push("/");
+  };
 
   return (
     <div css={styles.container}>
-      <img css={styles.image} src={result === 0 ? PokemonRun : Gotcha} />
-      <div css={styles.title}>{result === 1 ? "SUCCESSFUL!" : "FAILED"}</div>
-      <div css={styles.subtitle}>
-        {result === 1 ? "Gotta catch em' all!" : "It ran away..."}
-      </div>
-      <a css={styles.button} href="/">
-        <div css={styles.buttonText}>{"<"}</div>
-      </a>
+      {!showSetNickname ? (
+        <>
+          <img css={styles.image} src={success ? Gotcha : PokemonRun} />
+          <div css={styles.title}>{success ? "SUCCESSFUL!" : "FAILED"}</div>
+          <div css={styles.subtitle}>
+            {success ? "Gotta catch em' all!" : "It ran away..."}
+          </div>
+          <div css={styles.button} onClick={onClickButton}>
+            <div css={styles.buttonText}>{success ? "Set Nickname" : "<"}</div>
+          </div>
+        </>
+      ) : (
+        <>
+          <img css={styles.pokemonImage} src={location.state.image} />
+          <form css={styles.detailsNameContainer} onSubmit={onSubmit}>
+            <input
+              css={styles.detailsName}
+              type="text"
+              value={nickname}
+              onChange={(event) => setNickname(event.target.value)}
+            />
+            <input css={styles.submitButton} value="Submit" type="submit" />
+          </form>
+        </>
+      )}
     </div>
   );
 }
@@ -79,6 +113,14 @@ const useStyles = ({ colors }: Theme) => {
         height: "75vmin",
       },
     }),
+    pokemonImage: css({
+      height: 260,
+      borderRadius: "15rem",
+      backgroundColor: "#f5f5f5",
+      "@media (max-width: 960px)": {
+        height: 240,
+      },
+    }),
     title: css({
       fontWeight: 700,
       textAlign: "center",
@@ -98,14 +140,50 @@ const useStyles = ({ colors }: Theme) => {
       padding: 16,
       marginTop: 16,
       borderRadius: 10,
-      outline: "none",
+      cursor: "pointer",
       transform: "matrix(1,0,0,1,0,0)",
       transition: ".25s ease",
     }),
     buttonText: css({
       fontWeight: 700,
-      fontSize: "3rem",
+      fontSize: "2rem",
       margin: "0 10px",
+    }),
+    detailsNameContainer: css({
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    }),
+    detailsName: css({
+      border: 0,
+      fontSize: "2rem",
+      fontWeight: 700,
+      textTransform: "capitalize",
+      marginTop: "-1rem",
+      padding: 16,
+      borderRadius: "1rem",
+      backgroundColor: "#fff",
+      textAlign: "center",
+      boxShadow: `0 1px 6px 0 ${colors.cardShadow}`,
+      "@media screen and (max-width: 960px)": {
+        fontSize: "1.2rem",
+      },
+    }),
+    submitButton: css({
+      padding: 16,
+      fontWeight: 700,
+      borderRadius: "1rem",
+      fontSize: "1.5rem",
+      marginTop: 16,
+      cursor: "pointer",
+      outline: "none",
+      border: "none",
+      color: "#D4AF37",
+      backgroundColor: "#fff",
+      boxShadow: `0 1px 6px 0 ${colors.cardShadow}`,
+      "@media screen and (max-width: 960px)": {
+        fontSize: "1.2rem",
+      },
     }),
   };
 };

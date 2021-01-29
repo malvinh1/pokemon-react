@@ -74,6 +74,7 @@ export default function Details(props: Props) {
         state: {
           name: pokemonData?.name,
           nickname: nickname,
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData?.id}.png`,
         },
       });
     }
@@ -102,7 +103,6 @@ export default function Details(props: Props) {
           id={pokemonData?.id || 0}
           name={nickname}
           types={pokemonData?.types}
-          onChangeValue={setNickname}
         />
         <DetailsContent pokemonData={pokemonData} />
       </div>

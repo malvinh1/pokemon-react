@@ -9,6 +9,7 @@ import { client } from "./graphql/client";
 import CatchPokemon from "./pages/CatchPokemon";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
+import MyPokemonList from "./pages/MyPokemonList";
 import { ThemeProvider } from "./theme/ThemeContext";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/pokemon-details" exact component={Details} />
             <Route path="/catching-pokemon" exact component={CatchPokemon} />
+            <Route path="/my-pokemon-list" exact component={MyPokemonList} />
           </Switch>
         </Router>
       </ApolloProvider>
