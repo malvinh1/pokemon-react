@@ -7,7 +7,6 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
     "format:generated": "prettier --write \"src/generated/**/*.{ts,tsx}\"",
-    "pre-build": "yarn apollo:generate",
     "build": "yarn apollo:generate && react-scripts build",
     "test": "yarn apollo:generate && react-scripts test",
     "apollo:generate": "yarn create-generated-folder && yarn clean-generated-folder && yarn apollo:typegen-server && yarn format:generated",
