@@ -9,7 +9,6 @@ type Props = {
   id: number;
   name: string;
   types?: Array<Pokemon_pokemon_types | null> | null;
-  // eslint-disable-next-line no-unused-vars
 };
 
 export default function DetailsHeader({ id, name, types }: Props) {
