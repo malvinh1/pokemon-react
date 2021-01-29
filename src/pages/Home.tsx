@@ -2,7 +2,9 @@
 
 import { useQuery } from "@apollo/client";
 import { css, Theme, useTheme } from "@emotion/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useIndexedDB } from "react-indexed-db";
+import { useHistory } from "react-router-dom";
 
 import Button from "../components/Button";
 import Card from "../components/Card";
@@ -18,10 +20,13 @@ import { POKEMONS } from "../graphql/server/pokemon";
 export default function Home() {
   const styles = useStyles(useTheme());
   const { colors } = useTheme();
+  const { getAll } = useIndexedDB("pokemons");
+  const history = useHistory();
 
   const [pokemonData, setPokemonData] = useState<
     Array<Pokemons_pokemons_results | null>
   >([]);
+  const [pokemonDb, setPokemonDb] = useState();
   const [offset, setOffset] = useState(0);
 
   const { loading, error, data, fetchMore } = useQuery<
@@ -36,6 +41,25 @@ export default function Home() {
       setPokemonData((oldData) => [...oldData].concat(pokemons?.results || []));
     },
   });
+
+  useEffect(() => {
+    getAll().then(
+      (
+        db: Array<{ id: number; name: string; nickname: string; image: string }>
+      ) => {
+        const map: any = {};
+
+        db.forEach((item) => {
+          if (!map[item.name]) {
+            map[item.name] = 1;
+          } else {
+            map[item.name] += 1;
+          }
+        });
+        setPokemonDb(map);
+      }
+    );
+  }, []);
 
   const onClickLoadMore = () => {
     fetchMore({
@@ -79,7 +103,15 @@ export default function Home() {
             <Card
               name={item?.name || ""}
               imgUrl={item?.image || ""}
-              pokemonOwned={0}
+              pokemonOwned={pokemonDb?.[item?.name || ""] || 0}
+              onClick={() =>
+                history.push({
+                  pathname: "/pokemon-details",
+                  state: {
+                    name: item?.name,
+                  },
+                })
+              }
             />
           </div>
         ))}
