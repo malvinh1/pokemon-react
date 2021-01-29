@@ -2,33 +2,46 @@
 
 import { css, Theme, useTheme } from "@emotion/react";
 import React from "react";
-import { Link } from "react-router-dom";
+
+import OpenedPokeball from "../assets/open_pokeball.png";
 
 type Props = {
   name: string;
   imgUrl: string;
   pokemonOwned: number;
+  mode?: "normal" | "release";
+  onClick?: () => void;
 };
 
-export default function Card({ name, imgUrl, pokemonOwned }: Props) {
+export default function Card({
+  name,
+  imgUrl,
+  pokemonOwned,
+  mode = "normal",
+  onClick,
+}: Props) {
   const styles = useStyles(useTheme());
 
   return (
-    <Link
-      style={{ textDecoration: "none" }}
-      to={{
-        pathname: "/pokemon-details",
-        state: {
-          name,
-        },
-      }}
-    >
-      <div css={styles.container}>
-        <img css={styles.image} src={imgUrl} alt="pokemon-image" />
-        <p css={styles.cardTitle}>{name}</p>
+    <div css={styles.container} onClick={onClick}>
+      <img css={styles.image} src={imgUrl} alt="pokemon-image" />
+      <p css={styles.cardTitle}>{name}</p>
+
+      {mode === "normal" ? (
         <div css={styles.cardOwnedText}>{`Owned: ${pokemonOwned}`}</div>
-      </div>
-    </Link>
+      ) : (
+        <>
+          <div css={styles.cardReleaseText}>
+            <img
+              css={styles.pokeballImage}
+              src={OpenedPokeball}
+              alt="pokemon-image"
+            />
+            <div>RELEASE</div>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
@@ -73,10 +86,30 @@ const useStyles = ({ colors, spacing }: Theme) => {
         fontSize: ".5rem",
       },
     }),
+    cardReleaseText: css({
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      color: "black",
+      fontWeight: 700,
+      backgroundColor: colors.buttonBg,
+      borderRadius: "1rem",
+      padding: spacing.s,
+      "@media (max-width: 960px)": {
+        fontSize: ".5rem",
+      },
+    }),
     image: css({
       height: 160,
       "@media (max-width: 960px)": {
         height: 80,
+      },
+    }),
+    pokeballImage: css({
+      height: 20,
+      padding: "5px 40px",
+      "@media (max-width: 960px)": {
+        padding: "5px 20px",
       },
     }),
   };
