@@ -72,7 +72,12 @@ export default function Details(props: Props) {
           console.log(error);
         }
       );
-      history.goBack();
+      history.push({
+        pathname: "/catching-pokemon",
+        state: {
+          release: true,
+        },
+      });
     } else {
       history.push({
         pathname: "/catching-pokemon",
