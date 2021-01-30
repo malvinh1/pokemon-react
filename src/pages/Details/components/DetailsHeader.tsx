@@ -33,13 +33,13 @@ export default function DetailsHeader({ id, name, types }: Props) {
   );
 }
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     detailsHeader: css({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      margin: 16,
+      margin: spacing.l,
     }),
     detailsNameContainer: css({
       display: "flex",
@@ -55,7 +55,7 @@ const useStyles = ({ colors }: Theme) => {
       fontWeight: 700,
       textTransform: "capitalize",
       marginTop: "-1rem",
-      padding: 16,
+      padding: spacing.l,
       borderRadius: "1rem",
       backgroundColor: "#fff",
       textAlign: "center",

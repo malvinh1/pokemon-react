@@ -39,12 +39,12 @@ export default function DetailsContent({ pokemonData }: DetailsSectionProps) {
   );
 }
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     details: css({
       display: "flex",
       borderLeft: "1px solid #ccc ",
-      margin: 16,
+      margin: spacing.l,
       justifyContent: "center",
       "@media screen and (max-width: 960px)": {
         borderLeft: "none",
@@ -56,11 +56,11 @@ const useStyles = ({ colors }: Theme) => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      margin: 16,
+      margin: spacing.l,
     }),
     detailsTitle: css({
       color: "#D4AF37",
-      margin: 16,
+      margin: spacing.l,
       fontSize: "1.5rem",
       fontWeight: 700,
       "@media screen and (max-width: 960px)": {
@@ -68,8 +68,8 @@ const useStyles = ({ colors }: Theme) => {
       },
     }),
     detailsAbilitiesAndMoves: css({
-      padding: 16,
-      margin: 16,
+      padding: spacing.l,
+      margin: spacing.l,
       borderRadius: "2rem",
       backgroundColor: "#fff",
       textTransform: "capitalize",
@@ -78,7 +78,7 @@ const useStyles = ({ colors }: Theme) => {
       boxShadow: `0 1px 6px 0 ${colors.cardShadow}`,
       "@media screen and (max-width: 960px)": {
         fontSize: ".8rem",
-        padding: 8,
+        padding: spacing.s,
       },
     }),
   };

@@ -115,7 +115,7 @@ const Zoom = keyframes`
   }
 `;
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     container: css({
       display: "flex",
@@ -156,8 +156,8 @@ const useStyles = ({ colors }: Theme) => {
       textDecoration: "none",
       backgroundColor: "#ffcb05",
       boxShadow: "0 1px 6px 0 rgb(49 53 59 / 12%)",
-      padding: 16,
-      marginTop: 16,
+      padding: spacing.l,
+      marginTop: spacing.l,
       borderRadius: 10,
       cursor: "pointer",
       transform: "matrix(1,0,0,1,0,0)",
@@ -179,7 +179,7 @@ const useStyles = ({ colors }: Theme) => {
       fontWeight: 700,
       textTransform: "capitalize",
       marginTop: "-1rem",
-      padding: 16,
+      padding: spacing.l,
       borderRadius: "1rem",
       backgroundColor: "#fff",
       textAlign: "center",
@@ -189,11 +189,11 @@ const useStyles = ({ colors }: Theme) => {
       },
     }),
     submitButton: css({
-      padding: 16,
+      padding: spacing.l,
       fontWeight: 700,
       borderRadius: "1rem",
       fontSize: "1.5rem",
-      marginTop: 16,
+      marginTop: spacing.l,
       cursor: "pointer",
       outline: "none",
       border: "none",

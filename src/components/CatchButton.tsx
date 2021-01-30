@@ -21,7 +21,7 @@ export default function CatchButton({ label, onClick }: Props) {
   );
 }
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     detailsButton: css({
       display: "flex",
@@ -29,7 +29,7 @@ const useStyles = ({ colors }: Theme) => {
       justifyContent: "center",
       alignSelf: "center",
       alignItems: "center",
-      padding: 16,
+      padding: spacing.l,
       borderRadius: 10,
       backgroundColor: "#fff",
       boxShadow: `0 1px 6px 0 ${colors.cardShadow}`,
@@ -50,7 +50,7 @@ const useStyles = ({ colors }: Theme) => {
     detailsButtonText: css({
       fontSize: "1rem",
       fontWeight: 700,
-      marginTop: 6,
+      marginTop: spacing.s,
     }),
     pokeballImage: css({
       height: "15vmin",

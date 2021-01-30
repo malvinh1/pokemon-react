@@ -16,6 +16,7 @@ declare module "@emotion/react" {
       l: number;
       xl: number;
       xxl: number;
+      xxxl: number;
     };
   }
 }

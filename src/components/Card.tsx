@@ -70,7 +70,7 @@ const useStyles = ({ colors, spacing }: Theme) => {
     cardTitle: css({
       color: colors.primary,
       fontWeight: 700,
-      marginTop: 16,
+      marginTop: spacing.l,
       textTransform: "capitalize",
       "@media (max-width: 960px)": {
         fontSize: ".8rem",

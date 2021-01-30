@@ -20,7 +20,7 @@ export default function Button({ label, onClick }: Props) {
   );
 }
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     container: css({
       display: "flex",
@@ -32,15 +32,15 @@ const useStyles = ({ colors }: Theme) => {
       border: 0,
       outline: "none",
       borderRadius: 10,
-      margin: 16,
-      padding: 16,
+      margin: spacing.l,
+      padding: spacing.l,
       fontWeight: 700,
       fontSize: "1.1rem",
       backgroundColor: colors.buttonBg,
       boxShadow: "0 1px 6px 0 rgb(49 53 59 / 12%)",
       "@media (max-width: 960px)": {
-        margin: 8,
-        padding: 8,
+        margin: spacing.s,
+        padding: spacing.s,
         fontSize: "1rem",
       },
     }),

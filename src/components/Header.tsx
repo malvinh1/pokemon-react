@@ -55,7 +55,7 @@ export default function Header() {
   );
 }
 
-const useStyles = ({ colors }: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     container: css({
       alignItems: "center",
@@ -80,15 +80,15 @@ const useStyles = ({ colors }: Theme) => {
     image: css({
       width: 80,
       height: 80,
-      marginRight: 36,
-      padding: 8,
+      marginRight: spacing.xxxl,
+      padding: spacing.s,
       "&:active; &:hover": {
         backgroundColor: colors.buttonBg,
       },
       "@media screen and (max-width: 960px)": {
         width: 50,
         height: 50,
-        marginRight: 10,
+        marginRight: spacing.s,
       },
     }),
   };

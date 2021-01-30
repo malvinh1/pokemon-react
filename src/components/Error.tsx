@@ -19,13 +19,13 @@ export default function Error({ containerStyle }: Props) {
   );
 }
 
-const useStyles = (theme: Theme) => {
+const useStyles = ({ colors, spacing }: Theme) => {
   return {
     text: css({
       textAlign: "center",
-      color: theme.colors.primary,
+      color: colors.primary,
       fontWeight: 700,
-      marginTop: 16,
+      marginTop: spacing.l,
     }),
   };
 };

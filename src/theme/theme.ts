@@ -13,6 +13,7 @@ export const lightTheme = {
     l: 16,
     xl: 24,
     xxl: 30,
+    xxxl: 36,
   },
 };
 

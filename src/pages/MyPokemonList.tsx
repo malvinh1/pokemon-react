@@ -97,10 +97,11 @@ const useStyles = ({ colors, spacing }: Theme) => {
       marginTop: "2rem",
     }),
     fallbackText: css({
+      color: colors.primary,
       fontWeight: 700,
       fontSize: "5vmin",
       textAlign: "center",
-      margin: 16,
+      margin: spacing.l,
     }),
     image: css({
       height: "20vmin",
