@@ -14,6 +14,7 @@ type Props = {
       name: string;
       nickname: string;
       image: string;
+      release?: boolean;
     };
   };
 };
@@ -54,6 +55,24 @@ export default function CatchPokemon({ location }: Props) {
     );
     history.push("/");
   };
+
+  if (location.state.release) {
+    return (
+      <div css={styles.container}>
+        <img css={styles.image} src={PokemonRun} />
+        <div css={styles.title}>RELEASED!</div>
+        <div css={styles.subtitle}>Good bye friend!</div>
+        <div
+          css={styles.button}
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          <div css={styles.buttonText}>{"<"}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div css={styles.container}>
