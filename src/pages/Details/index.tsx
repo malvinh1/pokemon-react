@@ -22,6 +22,7 @@ type Props = {
   location: {
     state: {
       name: string;
+      nickname?: string;
     };
   };
 };
@@ -47,8 +48,12 @@ export default function Details(props: Props) {
     onCompleted: async ({ pokemon }) => {
       if (pokemon) {
         setPokemonData(pokemon);
-        setNickname(pokemon.name || "");
-        const catchedPokemon = await getByIndex("nickname", pokemon.name);
+        setNickname(props.location.state.nickname || pokemon.name || "");
+
+        const catchedPokemon = await getByIndex(
+          "nickname",
+          props.location.state.nickname || pokemon.name
+        );
 
         if (catchedPokemon) {
           setCatched(catchedPokemon);
