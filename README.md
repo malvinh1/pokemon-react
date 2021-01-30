@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# Pokemon App with Create-React-App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Take a journey to the pokemon's world and catch em' all! Available with dark mode, and fully supported on mobile & desktop!
 
-## Available Scripts
+Created with CRA & typescript with https://graphql-pokeapi.vercel.app/ as the API. It also uses https://emotion.sh/docs/introduction as the library to write css in javascript.
 
-In the project directory, you can run:
+Website link: https://pokemon-react-murex.vercel.app/
 
-### `yarn start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Home Page
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Light Mode   |      Dark Mode      |
+|--------------|:-------------------:|
+| <img width="361" alt="Screen Shot 2021-01-30 at 12 56 40 PM" src="https://user-images.githubusercontent.com/42708035/106348692-9cfb6800-62fa-11eb-8249-0c537115f18b.png">    |  <img width="361" alt="Screen Shot 2021-01-30 at 12 55 07 PM" src="https://user-images.githubusercontent.com/42708035/106348668-6887ac00-62fa-11eb-9029-f58864e2fee7.png">       |
 
-### `yarn test`
+### Pokemon's Details Page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Light Mode   |      Dark Mode      |
+|--------------|:-------------------:|
+| <img width="361" alt="Screen Shot 2021-01-30 at 12 58 43 PM" src="https://user-images.githubusercontent.com/42708035/106348726-e8ae1180-62fa-11eb-9a18-aa49c4b6de63.png">    |  <img width="361" alt="Screen Shot 2021-01-30 at 1 00 26 PM" src="https://user-images.githubusercontent.com/42708035/106348753-24e17200-62fb-11eb-9ab7-414ae6bdd565.png">      |
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Performance score
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Lighthouse
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img width="569" alt="Screen Shot 2021-01-30 at 1 06 42 PM" src="https://user-images.githubusercontent.com/42708035/106348853-09c33200-62fc-11eb-97a5-2a1abb02fb8b.png">
