@@ -75,7 +75,8 @@ const spin = keyframes`
 const useStyles = ({ colors, spacing }: Theme) => {
   return {
     container: css({
-      height: "90vh",
+      height: "100%",
+      minHeight: "100vh",
       backgroundColor: colors.background,
     }),
     contentContainer: css({
