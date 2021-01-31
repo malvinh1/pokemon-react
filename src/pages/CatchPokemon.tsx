@@ -28,7 +28,8 @@ export default function CatchPokemon({ location }: Props) {
   const [showSetNickname, setShowSetNickname] = useState(false);
 
   const success = useMemo(() => {
-    let result = Math.floor(Math.random() * 2) + 0;
+    // let result = Math.floor(Math.random() * 2) + 0;
+    let result = 1;
     return result === 1 ? true : false;
   }, []);
 
