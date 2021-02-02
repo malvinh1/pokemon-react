@@ -15,7 +15,12 @@ export default function CatchButton({ label, onClick }: Props) {
 
   return (
     <div css={styles.detailsButton} onClick={onClick}>
-      <img css={styles.pokeballImage} src={Pokeball} alt="Catch em all!" />
+      <img
+        css={styles.pokeballImage}
+        src={Pokeball}
+        alt="Catch em all!"
+        loading="lazy"
+      />
       <div css={styles.detailsButtonText}>{label}</div>
     </div>
   );

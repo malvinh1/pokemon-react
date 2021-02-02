@@ -14,7 +14,7 @@ export default function LoadingIndicator({ containerStyle }: Props) {
 
   return (
     <div css={styles.container} style={containerStyle}>
-      <img css={styles.image} src={LoadingImage} />
+      <img css={styles.image} src={LoadingImage} loading="lazy" />
     </div>
   );
 }

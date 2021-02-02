@@ -24,7 +24,7 @@ export default function Card({
 
   return (
     <div css={styles.container} onClick={onClick}>
-      <img css={styles.image} src={imgUrl} alt="pokemon-image" />
+      <img css={styles.image} src={imgUrl} alt="pokemon-image" loading="lazy" />
       <p css={styles.cardTitle}>{name}</p>
 
       {mode === "normal" ? (
@@ -36,6 +36,7 @@ export default function Card({
               css={styles.pokeballImage}
               src={OpenedPokeball}
               alt="pokemon-image"
+              loading="lazy"
             />
             <div>RELEASE</div>
           </div>

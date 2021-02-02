@@ -59,7 +59,7 @@ export default function CatchPokemon({ location }: Props) {
   if (location.state.release) {
     return (
       <div css={styles.container}>
-        <img css={styles.image} src={PokemonRun} />
+        <img css={styles.image} src={PokemonRun} loading="lazy" />
         <div css={styles.title}>RELEASED!</div>
         <div css={styles.subtitle}>Good bye friend!</div>
         <div

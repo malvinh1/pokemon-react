@@ -40,6 +40,7 @@ export default function Home() {
     onCompleted: ({ pokemons }) => {
       setPokemonData((oldData) => [...oldData].concat(pokemons?.results || []));
     },
+    fetchPolicy: "cache-first",
   });
 
   useEffect(() => {

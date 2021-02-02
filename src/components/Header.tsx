@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <div css={styles.container}>
       <Link to="/">
-        <img css={styles.logo} src={Logo} alt="logo" />
+        <img css={styles.logo} src={Logo} alt="logo" loading="lazy" />
       </Link>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Link

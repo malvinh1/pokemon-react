@@ -60,6 +60,7 @@ export default function Details(props: Props) {
         }
       }
     },
+    fetchPolicy: "cache-first",
   });
 
   const onCatchClick = () => {
