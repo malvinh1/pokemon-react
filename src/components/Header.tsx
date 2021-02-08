@@ -24,7 +24,7 @@ export default function Header() {
   };
 
   return (
-    <div css={styles.container}>
+    <nav css={styles.container}>
       <Link to="/">
         <img css={styles.logo} src={Logo} alt="logo" loading="lazy" />
       </Link>
@@ -51,7 +51,7 @@ export default function Header() {
           uncheckedIcon={false}
         />
       </div>
-    </div>
+    </nav>
   );
 }
 
